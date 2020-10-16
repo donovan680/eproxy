@@ -38,6 +38,7 @@ q=.2 Cache-Control: no-store Pragma: no-cache Expires: Fri, 01 Jan 1990 00:00:00
 POST / HTTP/1.1Host: myhost.comConnection: Keep-AliveAccept: text/html, image/gif, image/jpeg, image/req-fpost2, *; q=.2, */*; q=.2User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1;Proxy-Connection: Keep-AliveAccept: image/fpost2, *; q=.2, */*; q=.2Cache-Control: no-storePragma: no-cacheContent-Length: 2Expires: Fri, 01 Jan 1990 00:00:00 
 GMTContent-Type: application/octet-streamCookie: namex==UTO5kjNyojbp1GZhpjM4ETOyIjNzQjMwYTMaa ================ //
 Return till \r\n\r\n
+
 int getHTTPHeader(char * buf, int sock) 
 { 
 int success = 0; 
@@ -53,7 +54,9 @@ int buf_idx = 0;
     } 
        return success;
  } 
- =====..equal distribution is a problem but please make sure connections having SAME COOKIE value go to same Destination server. (sum)%10 is very bad..I tested already... RAMDOM () distribution is very perfect... but please make sure connections having SAME COOKIE value go to same Destination server. 
+ 
+ 
+ ===== ..equal distribution is a problem but please make sure connections having SAME COOKIE value go to same Destination server. (sum)%10 is very bad..I tested already... RAMDOM () distribution is very perfect... but please make sure connections having SAME COOKIE value go to same Destination server. 
  Please use RANDOM() distribution but if same cookie already active ..
  we need to pick up the same IP ==================================================================================  it will be used instead of HAPROXY....... 
  and expecting good load ..it will be a new experience.. 
