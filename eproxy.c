@@ -299,7 +299,24 @@ int listen_socket(int efd, char *lname, char *port)
 		err("epoll add listen fd");
 
 	return lfd;
-}
+}   
+
+int getHTTPHeader(char * buf, int sock) 
+{ 
+int success = 0; 
+int buf_idx = 0; 
+     while (buf_idx < BUFSIZE && 1 == read(sock, buf + buf_idx, 1)) 
+      { 
+       if (buf_idx > 2 && '\n' == * (buf + buf_idx - 0) && '\r' == * (buf + buf_idx - 1) && '\n' == * (buf + buf_idx - 2) && '\r' == * (buf + buf_idx - 3)) 
+       { 
+        success = 1; buf_idx++; 
+	*(buf + buf_idx) = '\0'; break; 
+       } 
+       buf_idx++; 
+    } 
+       return success;
+ } 
+ 
 
 int main(int ac, char **av)
 {
