@@ -18,15 +18,19 @@ have enough.
 This is a simple Port forwarder program using ZERO COPY ..
 ( splice() ) 
 I will use it as Load balancer for HTTP connection 
----1 > You need to add little code to retrieve HTTP request header COOKIE from the incoming http connection.... say I have 10 HTTP servers.....
-You will maintain a C++ STL MAP.... which will have HASH VALUE of cookie as a key and SERVER IP as Value You need to write a small method which will generate HASH value from 0-9 for all fetched cookie. -------------------------------------------------------- 
+---1 > You need to add little code to retrieve HTTP request header COOKIE from the incoming http connection.... 
+      say I have 10 HTTP servers ... you will maintain a C++ STL MAP.... which will have HASH VALUE of cookie as a         key and SERVER IP as Value.
+  You need to write a small method which will generate HASH value from 0-9 for all fetched cookie. -------------------------------------------------------- 
 1. It will fetch cookie from HEADER 
 2. Generate hash 0 - 9 integer value ( pls make it variable so that I can increase it when my http server count will be increased) 
-3. using above hash value it will get outgoing server IP from STL MAP to connect ----------- It will ensure that connection with same cookie always go to same HTTP server.....otherwise session will not maintain.. ==============================================
+3. using above hash value it will get outgoing server IP from STL MAP to connect ----------- 
+It will ensure that connection with same cookie always go to same HTTP server.....
+otherwise session will not maintain..
 I have attached a black image above you need to fix the CRASH......
 it is happening during idle connection deletion the program is using splice()....
 for better performance we will use read() method just to read the header value to get cookie ....
-after that we need to write the header to socket using write() as that splice() will take care all transfer as usual there a method called tree() ..it fetch data but does not consume... splice() fetch and consume ..both //
+after that we need to write the header to socket using write() as that splice() will take care all transfer as usual there a method called tree() ..
+it fetch data but does not consume... splice() fetch and consume ..both //
 
 sample get header GET / HTTP/1.1 
 Host: myhost.com Connection: Keep-Alive Accept: text/html, image/gif, image/jpeg, image/req-fpost2, *; 
